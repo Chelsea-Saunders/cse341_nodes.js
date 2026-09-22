@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch server.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/server.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Launch index.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
