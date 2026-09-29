@@ -10,13 +10,6 @@ GET http://localhost:8080/contacts/6ab313eb49d5a30ed8359208
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
-# {
-#     "firstName": "Jane", 
-#     "lastName": "Doe",
-#     "email": "jane.doe@email.com",
-#     "favoriteColor": "blue",
-#     "birthday": "1990-05-12"
-# }
 {
     "firstName": "Freddy", 
     "lastName": "Flintstone",
