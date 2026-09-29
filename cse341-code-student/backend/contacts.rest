@@ -10,16 +10,23 @@ GET http://localhost:8080/contacts/6ab313eb49d5a30ed8359208
 POST http://localhost:8080/contacts
 Content-Type: application/json
 
+# {
+#     "firstName": "Jane", 
+#     "lastName": "Doe",
+#     "email": "jane.doe@email.com",
+#     "favoriteColor": "blue",
+#     "birthday": "1990-05-12"
+# }
 {
-    "firstName": "Jane", 
-    "lastName": "Doe",
-    "email": "jane.doe@email.com",
-    "favoriteColor": "blue",
-    "birthday": "1990-05-12"
+    "firstName": "Freddy", 
+    "lastName": "Flintstone",
+    "email": "freddy@email.com",
+    "favoriteColor": "gray",
+    "birthday": "1900-10-03"
 }
 
 ### PUT update contact
-PUT http://localhost:8080/contacts/6ab3101049d5a30ed83591fe
+PUT http://localhost:8080/contacts/6abbfdc6dc9f2cecc3904036
 Content-Type: application/json
 
 {
@@ -31,7 +38,8 @@ Content-Type: application/json
 }
 
 ### DELETE contact
-DELETE http://localhost:8080/contacts/6ab313eb49d5a30ed8359208
+# DELETE [https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208](https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208)
+DELETE http://localhost:8080/contacts/6abbfdc6dc9f2cecc3904036
 
 ###  --------------------------
 ### Render production requests

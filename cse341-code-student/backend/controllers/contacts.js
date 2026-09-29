@@ -74,12 +74,16 @@ const updateContact = async (req, res) => {
 // DELETE contact
 const deleteContact = async (req, res) => {
     try {
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Must use a valid contact id to delete a contact.' });
+        }
         const userId = new ObjectId(req.params.id);
         const response = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: userId });
+        
         if (response.deletedCount > 0) {
             res.status(200).send();
         } else {
-            res.status(500).json(response.error || 'Some error occurred while deleting this contact');
+            res.status(404).json(response.error || 'Contact not found');
         }
     }
     catch (err) { 
