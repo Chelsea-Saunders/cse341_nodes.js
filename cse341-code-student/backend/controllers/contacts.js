@@ -60,7 +60,11 @@ const updateContact = async (req, res) => {
             birthday: req.body.birthday
         };
 
-        const response = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: userId }, contact);
+        const response = await mongodb
+            .getDb()
+            .db()
+            .collection('contacts')
+            .replaceOne({ _id: userId }, contact);
         if (response.modifiedCount > 0) {
             res.status(204).send();
         } else {
@@ -78,7 +82,11 @@ const deleteContact = async (req, res) => {
             return res.status(400).json({ message: 'Must use a valid contact id to delete a contact.' });
         }
         const userId = new ObjectId(req.params.id);
-        const response = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: userId });
+        const response = await mongodb
+            .getDb()
+            .db()
+            .collection('contacts')
+            .deleteOne({ _id: userId });
         
         if (response.deletedCount > 0) {
             res.status(200).send();

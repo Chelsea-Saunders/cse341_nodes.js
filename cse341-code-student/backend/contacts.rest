@@ -2,9 +2,7 @@
 GET http://localhost:8080/contacts
 
 ### get a single contact by id
-# GET http://localhost:8080/contacts/6ab313eb49d5a30ed8359208
-GET http://localhost:8080/contacts/6ab313d549d5a30ed8359206
-# GET http://localhost:8080/contacts/6ab3101049d5a30ed83591fe
+GET http://localhost:8080/contacts/6abc187e713d252d9b32edb3
 
 ### POST: create a new contact (temporary)
 # @name createContact
@@ -36,6 +34,8 @@ Content-Type: application/json
 ### DELETE contact
 DELETE http://localhost:8080/contacts/{{createContact.response.body.id}}
 
+
+
 ###  --------------------------
 ### Render production requests
 ### ---------------------------
@@ -47,6 +47,7 @@ GET https://cse341-nodes-js.onrender.com/contacts
 GET https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208
 
 ### POST create a new contact (render)
+# @name createRenderContact
 POST https://cse341-nodes-js.onrender.com/contacts
 Content-Type: application/json
 
@@ -58,8 +59,11 @@ Content-Type: application/json
     "birthday": "1970-02-29"
 }
 
+### GET: Retrieve the created above contact automatically
+GET https://cse341-nodes-js.onrender.com/contacts/{{createRenderContact.response.body.id}}
+
 ### PUT update contact (Relace with an ID to test)
-PUT https://cse341-nodes-js.onrender.com/contacts/6abc0863435f820c40bcae40
+PUT https://cse341-nodes-js.onrender.com/contacts/{{createRenderContact.response.body.id}}
 Content-Type: application/json
 
 {
@@ -71,4 +75,4 @@ Content-Type: application/json
 }
 
 ### Delete contact (Replace with an ID to test)
-DELETE https://cse341-nodes-js.onrender.com/contacts/6abc0863435f820c40bcae40
+DELETE https://cse341-nodes-js.onrender.com/contacts/{{createRenderContact.response.body.id}}
