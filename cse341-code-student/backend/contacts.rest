@@ -38,7 +38,6 @@ Content-Type: application/json
 }
 
 ### DELETE contact
-# DELETE [https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208](https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208)
 DELETE http://localhost:8080/contacts/6abbfdc6dc9f2cecc3904036
 
 ###  --------------------------
@@ -64,7 +63,7 @@ Content-Type: application/json
 }
 
 ### PUT update contact (Relace with an ID to test)
-PUT https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208
+PUT https://cse341-nodes-js.onrender.com/contacts/6abbfe9e7d72ac094b563e5c
 Content-Type: application/json
 
 {
@@ -76,4 +75,4 @@ Content-Type: application/json
 }
 
 ### Delete contact (Replace with an ID to test)
-DELETE https://cse341-nodes-js.onrender.com/contacts/6ab313eb49d5a30ed8359208
+DELETE https://cse341-nodes-js.onrender.com/contacts/6abbfe9e7d72ac094b563e5c
