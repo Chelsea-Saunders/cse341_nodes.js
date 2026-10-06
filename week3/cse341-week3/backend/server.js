@@ -9,19 +9,25 @@ const mongodb = require('./db/connect');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(cors());
-app.use(express.json());
+// app.use('/', require('./routes'));
 
 app
-    .use(bodyParser.json())
+    .use(cors())
+    .use(express.json())
     .use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        const path = req.originalUrl || req.url || '';
+        res.setHeader(
+            'Access-Control-Allow-Origin',
+            '*'
+        );
         res.setHeader(
             'Access-Control-Allow-Headers',
-            'Origin, x-Requested-with, Content-Type, Accept, Z-Key'
+            'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
         );
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+            if (!path.includes('/api-docs')) {
+                res.setHeader('Content-Type', 'application/json');
+            }
         next();
     })
     .use('/', require('./routes'));

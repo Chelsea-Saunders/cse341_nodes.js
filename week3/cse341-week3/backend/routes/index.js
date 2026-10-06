@@ -4,6 +4,10 @@ const router = express.Router();
 const swaggerUi = require ('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
 
+router.get('/', (req, res) => {
+    res.send('Contacts API is running');
+});
+
 // route for documentation
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //route for professional module
