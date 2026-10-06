@@ -1,0 +1,11 @@
+{ 
+     "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+    "plugins": ["prettier"],
+    "rules": {
+        "prettier/prettier": "warn",
+        "no-unused-vars": "warn",
+        "no-console": "off",
+        "no-process-exit": "off",
+        "react/react-in-jsx-scope": "off"
+    }
+}
