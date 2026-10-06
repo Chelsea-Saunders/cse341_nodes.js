@@ -1,6 +1,8 @@
 const Joi = require('joi');
 const express = require('express');
 const app = express();
+const router = require('express').Router();
+router.use('/contacts', require('./contacts'));
 
 app.use(express.json()); // returns a piece of middleware
 
@@ -82,7 +84,9 @@ app.delete('/pi/courses/:id', (req, res) => {
 
 
 // PORT
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
+
+module.export = router;
