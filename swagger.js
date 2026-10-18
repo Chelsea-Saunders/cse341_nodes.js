@@ -1,12 +1,20 @@
 const swaggerAutogen = require('swagger-autogen')();
 
+const host = process.env.NODE_ENV === 'production'
+  ? 'cse341-instructor.herokuapp.com'
+  : 'localhost:3030';
+
+const schemes = process.env.NODE_ENV === 'production'
+  ? ['https']
+  : ['http'];
+
 const doc = {
   info: {
     title: 'My API',
     description: 'Temple API'
   },
-  host: 'cse341-instructor.herokuapp.com',
-  schemes: ['https']
+  host: host,
+  schemes: schemes
 };
 
 const outputFile = './swagger.json';
