@@ -38,15 +38,15 @@ DELETE http://localhost:3030/contacts/6ad40461ce38e149a21ca4a4 HTTP/1.1
 
 // PRODUCTION Deploy
 ### Get all contacts
-GET https://https://w6-341-team.onrender.com/contacts
+GET https://w6-341-team.onrender.com/contacts
 
 
 ### Get contact by id
-GET https://https://w6-341-team.onrender.com/contacts/622023f642f9ab4cd6e060b3
+GET https://w6-341-team.onrender.com/contacts/622023f642f9ab4cd6e060b3
 
 
 ### Create contact
-POST https://https://w6-341-team.onrender.com/contacts HTTP/1.1
+POST https://w6-341-team.onrender.com/contacts HTTP/1.1
 content-type: application/json
 
 {
@@ -59,7 +59,7 @@ content-type: application/json
 
 
 ### PUT contact
-PUT https://https://w6-341-team.onrender.com/contacts/6220bcb39cd507e920c75a0b HTTP/1.1
+PUT https://w6-341-team.onrender.com/contacts/6220bcb39cd507e920c75a0b HTTP/1.1
 content-type: application/json
 
 {
@@ -72,4 +72,4 @@ content-type: application/json
 
 
 ### DELETE contact
-DELETE https://https://w6-341-team.onrender.com/contacts/6220e34083149913680f9a64 HTTP/1.1
+DELETE https://w6-341-team.onrender.com/contacts/6220e34083149913680f9a64 HTTP/1.1
