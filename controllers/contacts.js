@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
+const getAll = async (req, res, next) => {
     try {
       const lists = await mongodb
       .getDb()
@@ -9,16 +9,14 @@ const getAll = async (req, res) => {
       .collection('contacts')
       .find()
       .toArray()
-    res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
-  }
-  catch(err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+
+  } catch(err) {
+    next(err);
   }
 };
 
-const getSingle = async (req, res) => {
+const getSingle = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json({ message: 'Invalid contact id' });
@@ -30,20 +28,19 @@ const getSingle = async (req, res) => {
       .db()
       .collection('contacts')
       .findOne({ _id: userId });
-
-    res.setHeader('Content-Type', 'application/json');
+    
     if (!contact) {
       res.status(404).json({ message: 'Contact not found' });
-    } else {
-      res.status(200).json(contact);
+      return;
     }
+
+    res.status(200).json(contact);
   } catch(err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+    next(err);
   }
 };
 
-const createContact = async (req, res) => {
+const createContact = async (req, res, next) => {
   try {
     const contact = {
       firstName: req.body.firstName,
@@ -57,19 +54,14 @@ const createContact = async (req, res) => {
       .db()
       .collection('contacts')
       .insertOne(contact);
-    if (response.acknowledged) {
-      res.status(201).json({ _id: response.insertedId });
-    } else {
-      res.status(500).json(response.error || 
-        'Some error occurred while creating the contact.');
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+      
+    res.status(201).json({ _id: response.insertedId });
+  } catch(err) {
+    next(err);
   }
 };
 
-const updateContact = async (req, res) => {
+const updateContact = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json({ message: 'Invalid contact id' });
@@ -89,18 +81,18 @@ const updateContact = async (req, res) => {
       .db()
       .collection('contacts')
       .replaceOne({ _id: userId }, contact);
-    if (response.matchedCount === 0) {
-      res.status(404).json({ message: 'Contact not found' });
-    } else {
-      res.status(200).send();
+
+    if(response.matchedCount === 0) {
+      return res.status(404).json({ message: 'Contact not found' });
     }
+
+    res.status(200).send();
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+    next(err);
   }
 };
 
-const deleteContact = async (req, res) => {
+const deleteContact = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json({ message: 'Invalid contact id' });
@@ -112,14 +104,14 @@ const deleteContact = async (req, res) => {
       .db()
       .collection('contacts')
       .deleteOne({ _id: userId });
+    
     if (response.deletedCount === 0) {
-      res.status(404).json({ message: 'Contact not found' });
-    } else {
-      res.status(200).send();
+      return res.status(404).json({ message: 'Contact not found'});
     }
+
+      res.status(200).send();
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
+    next(err);
   }
 };
 

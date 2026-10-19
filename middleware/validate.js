@@ -1,23 +1,26 @@
-const validator = require('../helpers/validate');
-const saveContact = (req, res, next) => {
-    const validationRules = {
+const Validator = require('validatorjs');
+
+const validationRules = {
         firstName: 'required|string', 
         lastName: 'required|string', 
         email: 'required|email', 
         favoriteColor: 'string',
-        birthday: 'date'
+        birthday: 'required|date'
     };
 
-    validator(req.body, validationRules, {}, (err, status) => {
-        if (!status) {
-            res.status(412).send({
-                success: false, 
-                message: 'Validation failed', 
-                date: err
-            });
-        } else {
-            next();
-        }
+const saveContact = (req, res, next) => {
+    if (!req.body || typeof req.body !== 'object') {
+        return res.status(400).json({ message: 'Request body is required' });
+    }
+    const validation = new Validator(req.body, validationRules);
+
+    if (validation.passes()) {
+        return next();
+    }
+
+    return res.status(400).json({
+        message: 'Validation failed', 
+        errors: validation.errors.all()
     });
 };
 
