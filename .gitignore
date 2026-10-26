@@ -1,8 +1,0 @@
-node_modules/
-.env
-*.env
-atlas-credentials.env
-.DS_Store.DS_Store
-*.mov
-node_modules/
-.env
